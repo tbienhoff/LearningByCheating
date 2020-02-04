@@ -222,7 +222,10 @@ class ModuleHUD (object):
         pass
 
     def _init_hud_params(self):
-        fonts = [x for x in pygame.font.get_fonts() if 'mono' in x]
+        if pygame.font.get_fonts() is None or None in pygame.font.get_fonts():
+            fonts = pygame.font.get_default_font()
+        else:
+            fonts = [x for x in pygame.font.get_fonts() if 'mono' in x]
         default_font = 'ubuntumono'
         mono = default_font if default_font in fonts else fonts[0]
         mono = pygame.font.match_font(mono)

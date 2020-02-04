@@ -192,6 +192,11 @@ _aliases = {
         'dense-np': [
             'NoCrashTown01-v5-np', 'NoCrashTown01-v6-np',
             'NoCrashTown02-v5-np', 'NoCrashTown02-v6-np',
+            ],
+        'nocrash2': [
+            'NoCrashTown02-v1', 'NoCrashTown02-v2',
+            'NoCrashTown02-v3', 'NoCrashTown02-v4',
+            'NoCrashTown02-v5', 'NoCrashTown02-v6',
             ]
         }
 

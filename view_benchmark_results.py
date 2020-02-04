@@ -1,7 +1,7 @@
 import re
 import numpy as np
 import pandas as pd
-from terminaltables import DoubleTable
+from terminaltables import AsciiTable 
 from pathlib import Path
 
 
@@ -30,13 +30,13 @@ def main(path_name):
 		rates = successes / totals * 100
 
 		if len(seeds) > 1:
-			table_data.append([suite_name, "%.1f ± %.1f"%(np.mean(rates), np.std(rates, ddof=1)), "%d/%d"%(sum(successes),sum(totals)), ','.join(sorted(seeds.keys()))])
+			table_data.append([suite_name, "%.1f +/- %.1f"%(np.mean(rates), np.std(rates, ddof=1)), "%d/%d"%(sum(successes),sum(totals)), ','.join(sorted(seeds.keys()))])
 		else:
 			table_data.append([suite_name, "%d"%np.mean(rates), "%d/%d"%(sum(successes),sum(totals)), ','.join(sorted(seeds.keys()))])
 
 	table_data = sorted(table_data, key=lambda row: row[0])
 	table_data = [('Suite Name', 'Success Rate', 'Total', 'Seeds')] + table_data
-	table = DoubleTable(table_data, "Performance of %s"%path.name)
+	table = AsciiTable(table_data, "Performance of %s"%path.name)
 	print(table.table)
 
 

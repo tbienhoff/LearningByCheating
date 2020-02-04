@@ -20,7 +20,7 @@ except IndexError as e:
 import utils.bz_utils as bzu
 
 from models.birdview import BirdViewPolicyModelSS
-from train_util import one_hot
+from utils.train_utils import one_hot
 from utils.datasets.birdview_lmdb import get_birdview as load_data
 
 
@@ -28,7 +28,8 @@ from utils.datasets.birdview_lmdb import get_birdview as load_data
 BACKBONE = 'resnet18'
 GAP = 5
 N_STEP = 5
-SAVE_EPOCHS = [1, 2, 4, 8, 16, 32, 64, 128, 256, 384, 512, 768, 1000]
+#SAVE_EPOCHS = [1, 2, 4, 8, 16, 32, 64, 128, 256, 384, 512, 768, 1000]
+SAVE_EPOCHS = list(range(1000))[::5]
 
 class LocationLoss(torch.nn.Module):
     def __init__(self, w=192, h=192, choice='l2'):
@@ -158,6 +159,8 @@ def train(config):
     bzu.log.save_config(config)
 
     data_train, data_val = load_data(**config['data_args'])
+    print("data_train length: ", len(data_train))
+    print("data_val length  : ", len(data_val))
     criterion = LocationLoss(w=192, h=192, choice='l1')
     net = BirdViewPolicyModelSS(config['model_args']['backbone']).to(config['device'])
     

@@ -63,3 +63,15 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build/
+
+# Tyler added
+.config/
+.nv/
+ImportAssets.sh
+Manifest_DebugFiles_Linux.txt
+PythonAPI/
+VERSION
+ckpts/
+log_data/
+training/core.12662
+
